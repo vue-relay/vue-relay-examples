@@ -15,7 +15,7 @@
     "todomvc-app-css": "^2.1.0",
     "todomvc-common": "^1.0.4",
     "vue": "^2.5.2",
-    "vue-relay": "^1.5.0",
+    "vue-relay": "^1.5.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

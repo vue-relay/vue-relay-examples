@@ -15,9 +15,7 @@
         Mark all as complete
       </label>
       <ul class="todo-list">
-        <todo-container :todo="edge.node" :viewer="viewer" v-for="edge in viewer.todos.edges" :key="edge.node.id">
-          <todo slot-scope="props" v-bind="props"></todo>
-        </todo-container>
+        <todo-container :todo="edge.node" :viewer="viewer" v-for="edge in viewer.todos.edges" :key="edge.node.id"></todo-container>
       </ul>
     </section>
     <footer class="footer">
@@ -48,8 +46,7 @@ export default {
   name: 'todos',
   props: ['relay', 'viewer'],
   components: {
-    TodoContainer: createFragmentContainer(TodoFragmentSpec),
-    Todo
+    TodoContainer: createFragmentContainer(Todo, TodoFragmentSpec)
   },
   data () {
     return {

@@ -1,4 +1,4 @@
-import {
+const {
   GraphQLBoolean,
   GraphQLID,
   GraphQLInt,
@@ -7,9 +7,9 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString
-} from 'graphql'
+} = require('graphql')
 
-import {
+const {
   connectionArgs,
   connectionDefinitions,
   connectionFromArray,
@@ -19,9 +19,9 @@ import {
   mutationWithClientMutationId,
   nodeDefinitions,
   toGlobalId
-} from 'graphql-relay'
+} = require('graphql-relay')
 
-import {
+const {
   Todo,
   User,
   addTodo,
@@ -34,7 +34,7 @@ import {
   removeCompletedTodos,
   removeTodo,
   renameTodo
-} from './database'
+} = require('./database')
 
 const {nodeInterface, nodeField} = nodeDefinitions(
   (globalId) => {
@@ -263,7 +263,11 @@ const Mutation = new GraphQLObjectType({
   }
 })
 
-export const schema = new GraphQLSchema({
+const schema = new GraphQLSchema({
   query: Query,
   mutation: Mutation
 })
+
+module.exports = {
+  schema
+}

@@ -19,7 +19,7 @@ const mutation = graphql`
 `
 
 function getOptimisticResponse (complete, todo, user) {
-  const viewerPayload = {id: user.id}
+  const viewerPayload = { id: user.id }
   if (user.completedCount != null) {
     viewerPayload.completedCount = complete
       ? user.completedCount + 1
@@ -47,11 +47,11 @@ function commit (
     {
       mutation,
       variables: {
-        input: {complete, id: todo.id}
+        input: { complete, id: todo.id }
       },
       optimisticResponse: getOptimisticResponse(complete, todo, user)
     }
   )
 }
 
-export default {commit}
+export default { commit }

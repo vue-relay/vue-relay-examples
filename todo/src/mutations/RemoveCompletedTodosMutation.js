@@ -2,7 +2,7 @@ import {
   commitMutation,
   graphql
 } from 'vue-relay'
-import {ConnectionHandler} from 'relay-runtime'
+import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
   mutation RemoveCompletedTodosMutation($input: RemoveCompletedTodosInput!) {
@@ -55,4 +55,4 @@ function commit (
   )
 }
 
-export default {commit}
+export default { commit }

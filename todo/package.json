@@ -1,76 +1,54 @@
 {
+  "name": "todo",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "BABEL_ENV=node NODE_ENV=development babel-node server.js",
-    "start": "BABEL_ENV=node NODE_ENV=production babel-node server.js",
-    "lint": "eslint --ext .js,.vue src",
-    "build": "npm run relay && node build/build.js",
-    "relay": "npm run update-schema && relay-compiler --src ./src --schema ./data/schema.graphql",
-    "update-schema": "BABEL_ENV=node babel-node ./scripts/updateSchema.js"
+    "start": "NODE_ENV=production node index.js",
+    "serve": "node index.js",
+    "build": "npm run relay && vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "relay": "npm run relay:update-schema && npm run relay:compile",
+    "relay:compile": "relay-compiler --src ./src --schema ./graphql/schema.graphql",
+    "relay:update-schema": "node ./build/update-schema"
   },
   "dependencies": {
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
     "graphql-relay": "^0.5.5",
-    "todomvc-app-css": "^2.1.1",
+    "todomvc-app-css": "^2.1.2",
     "todomvc-common": "^1.0.5",
-    "vue": "^2.5.16",
+    "vue": "^2.5.17",
     "vue-relay": "^1.6.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^8.3.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.2",
-    "babel-eslint": "^8.2.3",
-    "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-relay": "^1.6.0",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-plugin-transform-vue-jsx": "^3.7.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "chalk": "^2.4.1",
-    "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "eslint-plugin-vue": "^4.5.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.11",
-    "friendly-errors-webpack-plugin": "^1.7.0",
-    "html-webpack-plugin": "^3.2.0",
-    "node-notifier": "^5.2.1",
-    "optimize-css-assets-webpack-plugin": "^3.2.0",
-    "ora": "^2.0.0",
-    "portfinder": "^1.0.13",
-    "postcss-import": "^11.1.0",
-    "postcss-loader": "^2.1.4",
-    "postcss-url": "^7.3.2",
-    "relay-compiler": "^1.6.0",
-    "rimraf": "^2.6.2",
-    "semver": "^5.5.0",
-    "shelljs": "^0.8.1",
-    "uglifyjs-webpack-plugin": "^1.2.5",
-    "url-loader": "^1.0.1",
-    "vue-loader": "^14.2.2",
-    "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.10.0",
-    "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-dev-server": "^2.11.1",
-    "webpack-merge": "^4.1.2"
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "@vue/eslint-config-standard": "^3.0.1",
+    "babel-plugin-relay": "^1.6.2",
+    "relay-compiler": "^1.6.2",
+    "vue-template-compiler": "^2.5.17"
   },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/standard"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   },
   "browserslist": [
     "> 1%",

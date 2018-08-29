@@ -1,23 +1,26 @@
 # Vue.js Relay TodoMVC
 
-## Build Setup
-
-``` sh
-# install dependencies
+## Project setup
+```
 npm install
+```
 
-# update relay generated files
+### Compiles relay artifacts
+```
 npm run relay
+```
 
-# serve with hot reload at localhost:8080
-npm run dev
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-# build for production with minification
+### Compiles and minifies for production
+```
 npm run build
+```
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# serve for production
-npm start
+### Lints and fixes files
+```
+npm run lint
 ```

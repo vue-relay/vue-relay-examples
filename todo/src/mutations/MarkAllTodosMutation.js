@@ -19,7 +19,7 @@ const mutation = graphql`
 `
 
 function getOptimisticResponse (complete, todos, user) {
-  const payload = {viewer: {id: user.id}}
+  const payload = { viewer: { id: user.id } }
   if (todos && todos.edges) {
     payload.changedTodos = todos.edges
       .filter(edge => edge.node.complete !== complete)
@@ -49,11 +49,11 @@ function commit (
     {
       mutation,
       variables: {
-        input: {complete}
+        input: { complete }
       },
       optimisticResponse: getOptimisticResponse(complete, todos, user)
     }
   )
 }
 
-export default {commit}
+export default { commit }

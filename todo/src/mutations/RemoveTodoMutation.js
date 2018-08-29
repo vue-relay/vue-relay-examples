@@ -2,7 +2,7 @@ import {
   commitMutation,
   graphql
 } from 'vue-relay'
-import {ConnectionHandler} from 'relay-runtime'
+import { ConnectionHandler } from 'relay-runtime'
 
 const mutation = graphql`
   mutation RemoveTodoMutation($input: RemoveTodoInput!) {
@@ -38,7 +38,7 @@ function commit (
     {
       mutation,
       variables: {
-        input: {id: todo.id}
+        input: { id: todo.id }
       },
       updater: (store) => {
         const payload = store.getRootField('removeTodo')
@@ -51,4 +51,4 @@ function commit (
   )
 }
 
-export default {commit}
+export default { commit }

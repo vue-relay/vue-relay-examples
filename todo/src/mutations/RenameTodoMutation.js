@@ -35,11 +35,11 @@ function commit (
     {
       mutation,
       variables: {
-        input: {title, id: todo.id}
+        input: { title, id: todo.id }
       },
       optimisticResponse: getOptimisticResponse(title, todo)
     }
   )
 }
 
-export default {commit}
+export default { commit }

@@ -7,7 +7,8 @@ module.exports = {
         'es6.array.iterator',
         'es6.promise'
       ]
-    }]
+    }],
+    '@babel/preset-flow'
   ],
   plugins: [
     'relay'

@@ -5,12 +5,13 @@ export default {
     fragment Todo_todo on Todo {
       complete
       id
-      title
+      text
     }
   `,
-  viewer: graphql`
-    fragment Todo_viewer on User {
+  user: graphql`
+    fragment Todo_user on User {
       id
+      userId
       totalCount
       completedCount
     }

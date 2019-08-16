@@ -2,7 +2,7 @@ const express = require('express')
 const graphQLHTTP = require('express-graphql')
 const { spawn } = require('child_process')
 
-const { schema } = require('./graphql/schema')
+const { schema } = require('./data/schema')
 
 new Promise((resolve, reject) => {
   const portfinder = require('portfinder')
@@ -15,7 +15,7 @@ new Promise((resolve, reject) => {
 
   portfinder.getPort((err, port) => {
     if (err) {
-      throw err
+      reject(err)
     } else {
       if (process.env.NODE_ENV === 'production') {
         resolve(port)
@@ -25,7 +25,7 @@ new Promise((resolve, reject) => {
       portfinder.basePort = port + 1
       portfinder.getPort((err, port) => {
         if (err) {
-          throw err
+          reject(err)
         } else {
           resolve(port)
         }

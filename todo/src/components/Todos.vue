@@ -6,7 +6,7 @@
         autofocus="autofocus"
         autocomplete="off"
         placeholder="What needs to be done?"
-        v-model="title"
+        v-model="text"
         @keyup.enter="newTodo">
     </header>
     <section class="main">
@@ -15,7 +15,7 @@
         Mark all as complete
       </label>
       <ul class="todo-list">
-        <todo-container :todo="edge.node" :viewer="viewer" v-for="edge in viewer.todos.edges" :key="edge.node.id"></todo-container>
+        <todo-container :todo="edge.node" :user="user" v-for="edge in user.todos.edges" :key="edge.node.id"></todo-container>
       </ul>
     </section>
     <footer class="footer">
@@ -44,53 +44,53 @@ import RemoveCompletedTodosMutation from '@/mutations/RemoveCompletedTodosMutati
 
 export default {
   name: 'todos',
-  props: ['relay', 'viewer'],
+  props: ['relay', 'user'],
   components: {
     TodoContainer: createFragmentContainer(Todo, TodoFragmentSpec)
   },
   data () {
     return {
-      title: ''
+      text: ''
     }
   },
   computed: {
     numTodos () {
-      return this.viewer.totalCount
+      return this.user.totalCount
     },
     numCompletedTodos () {
-      return this.viewer.completedCount
+      return this.user.completedCount
     },
     numRemainingTodos () {
-      return this.viewer.totalCount - this.viewer.completedCount
+      return this.user.totalCount - this.user.completedCount
     }
   },
   methods: {
     newTodo () {
-      if (this.title !== '') {
+      if (this.text !== '') {
         AddTodoMutation.commit(
           this.relay.environment,
-          this.title,
-          this.viewer
+          this.text,
+          this.user
         )
-        this.title = ''
+        this.text = ''
       }
     },
     toggleAll () {
       MarkAllTodosMutation.commit(
         this.relay.environment,
         this.numTodos !== this.numCompletedTodos,
-        this.viewer.todos,
-        this.viewer
+        this.user.todos,
+        this.user
       )
     },
     clearCompleted () {
-      const edges = this.viewer.todos.edges.filter(edge => edge.node.complete === true)
+      const edges = this.user.todos.edges.filter(edge => edge.node.complete === true)
       RemoveCompletedTodosMutation.commit(
         this.relay.environment,
         {
           edges
         },
-        this.viewer
+        this.user
       )
     }
   }

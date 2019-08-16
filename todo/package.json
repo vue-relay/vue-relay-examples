@@ -3,33 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "serve": "node index.js",
+    "start": "NODE_ENV=production babel-node index.js",
+    "serve": "babel-node index.js",
     "build": "npm run relay && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "relay": "npm run relay:update-schema && npm run relay:compile",
-    "relay:compile": "relay-compiler --src ./src --schema ./graphql/schema.graphql",
-    "relay:update-schema": "node ./build/update-schema"
+    "relay:compile": "relay-compiler --src ./src --schema ./data/schema.graphql",
+    "relay:update-schema": "babel-node ./build/update-schema"
   },
   "dependencies": {
-    "express-graphql": "^0.6.12",
-    "graphql": "^0.13.2",
-    "graphql-relay": "^0.5.5",
-    "todomvc-app-css": "^2.1.2",
+    "@babel/node": "^7.5.5",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.4.2",
+    "graphql-relay": "^0.6.0",
+    "todomvc-app-css": "^2.2.0",
     "todomvc-common": "^1.0.5",
-    "vue": "^2.5.17",
-    "vue-relay": "^1.6.0",
-    "vue-router": "^3.0.1"
+    "vue": "^2.6.10",
+    "vue-relay": "^5.0.0",
+    "vue-router": "^3.1.2"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@vue/cli-plugin-babel": "^3.0.1",
-    "@vue/cli-plugin-eslint": "^3.0.1",
-    "@vue/cli-service": "^3.0.1",
-    "@vue/eslint-config-standard": "^3.0.1",
-    "babel-plugin-relay": "^1.6.2",
-    "relay-compiler": "^1.6.2",
-    "vue-template-compiler": "^2.5.17"
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
+    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-plugin-eslint": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-plugin-relay": "^5.0.0",
+    "relay-compiler": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,

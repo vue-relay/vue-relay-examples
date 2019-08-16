@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <query-renderer :environment="environment" :query="AppQuery">
+    <query-renderer :environment="environment" :query="AppQuery" :variables="variables">
       <template slot-scope="{ props, error, retry }">
         <section class="info" v-if="error">
           <h1>{{ error.message }}</h1>
@@ -44,7 +44,10 @@ export default {
   data () {
     return {
       environment,
-      AppQuery
+      AppQuery,
+      variables: {
+        userId: 'me'
+      }
     }
   }
 }

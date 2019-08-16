@@ -2,12 +2,12 @@
   <li :class="{ completed: todo.complete, editing: isEditing }" v-if="show">
     <div class="view">
       <input type="checkbox" class="toggle" :checked="todo.complete" @change="toggle">
-      <label @dblclick="edit">{{ todo.title }}</label>
+      <label @dblclick="edit">{{ todo.text }}</label>
       <button class="destroy" @click="destory"></button>
     </div>
     <input class="edit" type="text"
       v-todo-focus="isEditing"
-      v-model="title"
+      v-model="text"
       @blur="doneEdit"
       @keyup.enter="doneEdit"
       @keyup.esc="cancelEdit">
@@ -21,7 +21,7 @@ import RenameTodoMutation from '@/mutations/RenameTodoMutation'
 
 export default {
   name: 'todo',
-  props: ['relay', 'todo', 'viewer'],
+  props: ['relay', 'todo', 'user'],
   directives: {
     'todo-focus': function (el, binding) {
       if (binding.value) {
@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      title: '',
+      text: '',
       isEditing: false
     }
   },
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     edit () {
-      this.title = this.todo.title
+      this.text = this.todo.text
       this.isEditing = true
     },
     doneEdit () {
@@ -57,12 +57,12 @@ export default {
         return
       }
       this.isEditing = false
-      if (this.title === '') {
+      if (this.text === '') {
         this.destory()
       } else {
         RenameTodoMutation.commit(
           this.relay.environment,
-          this.title,
+          this.text,
           this.todo
         )
       }
@@ -75,14 +75,14 @@ export default {
         this.relay.environment,
         !this.todo.complete,
         this.todo,
-        this.viewer
+        this.user
       )
     },
     destory () {
       RemoveTodoMutation.commit(
         this.relay.environment,
         this.todo,
-        this.viewer
+        this.user
       )
     }
   }

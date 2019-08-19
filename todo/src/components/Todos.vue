@@ -9,7 +9,7 @@
         v-model="text"
         @keyup.enter="newTodo">
     </header>
-    <section class="main">
+    <section class="main" v-show="numTodos > 0">
       <input type="checkbox" id="toggle-all" class="toggle-all" :checked="numTodos === numCompletedTodos" @change="toggleAll">
       <label for="toggle-all">
         Mark all as complete
@@ -18,7 +18,7 @@
         <todo-container :todo="edge.node" :user="user" v-for="edge in user.todos.edges" :key="edge.node.id"></todo-container>
       </ul>
     </section>
-    <footer class="footer">
+    <footer class="footer" v-show="numTodos > 0">
       <span class="todo-count">
         <strong>{{ numRemainingTodos }}</strong> item{{ numRemainingTodos === 1 ? '' : 's' }} left
       </span>

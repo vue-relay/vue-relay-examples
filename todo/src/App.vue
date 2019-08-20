@@ -28,10 +28,10 @@
 
 <script>
 import { QueryRenderer, createFragmentContainer } from 'vue-relay'
-import { environment } from '@/relay'
-import AppQuery from '@/relay/App'
+import { environment } from '@/environments/server'
+import AppQuery from '@/queries/App'
 import Todos from '@/components/Todos'
-import TodosFragmentSpec from '@/relay/Todos'
+import TodosFragmentSpec from '@/queries/Todos'
 
 export default {
   name: 'App',

@@ -37,7 +37,7 @@
 <script>
 import { createFragmentContainer } from 'vue-relay'
 import Todo from '@/components/Todo'
-import TodoFragmentSpec from '@/relay/Todo'
+import TodoFragmentSpec from '@/queries/Todo'
 import AddTodoMutation from '@/mutations/AddTodoMutation'
 import MarkAllTodosMutation from '@/mutations/MarkAllTodosMutation'
 import RemoveCompletedTodosMutation from '@/mutations/RemoveCompletedTodosMutation'

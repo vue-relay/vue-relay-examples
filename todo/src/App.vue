@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <query-renderer :environment="environment" :query="AppQuery" :variables="variables">
-      <template slot-scope="{ props, error, retry }">
-        <section class="info" v-if="error">
-          <h1>{{ error.message }}</h1>
-          <p><router-link :to="$route.path" @click.native="retry()">Retry</router-link></p>
-        </section>
-        <todos-container v-bind="props" v-else-if="props"></todos-container>
-        <section class="info" v-else>
-          <h1>loading...</h1>
-        </section>
-      </template>
+    <query-renderer :environment="environment" :query="AppQuery" :variables="variables" v-slot="{ props, error, retry }">
+      <section class="info" v-if="error">
+        <h1>{{ error.message }}</h1>
+        <p><router-link :to="$route.path" @click.native="retry()">Retry</router-link></p>
+      </section>
+      <todos-container v-bind="props" v-else-if="props"></todos-container>
+      <section class="info" v-else>
+        <h1>loading...</h1>
+      </section>
     </query-renderer>
     <footer class="info">
       <p>
